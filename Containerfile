@@ -36,8 +36,12 @@ RUN rm /zfs/*devel*.rpm /zfs/zfs-test*.rpm && \
     echo "zfs" > /etc/modules-load.d/zfs.conf && \
     # we don't want any files on /var
     rm -rf /var/lib/pcp
-RUN rpm-ostree install bootc
 
-RUN useradd -m -u 1000 -U -G wheel rivers
 
-COPY id_ed25519.pub  /home/core/.ssh/authorized_keys
+ADD https://download.zerotier.com/redhat/fc/41/zerotier-one-1.14.2-1.fc40.x86_64.rpm /zt.rpm
+RUN rpm-ostree install /zt.rpm
+
+RUN rpm-ostree install bootc caddy htop tmux fzf 
+
+
+RUN useradd -m -d /var/home/rivers -u 1000 -U -G wheel rivers
