@@ -38,10 +38,10 @@ RUN rm /zfs/*devel*.rpm /zfs/zfs-test*.rpm && \
     rm -rf /var/lib/pcp
 
 
-ADD https://download.zerotier.com/redhat/fc/41/zerotier-one-1.14.2-1.fc40.x86_64.rpm /zt.rpm
-RUN rpm-ostree install /zt.rpm
+#ADD https://download.zerotier.com/redhat/fc/41/zerotier-one-1.14.2-1.fc40.x86_64.rpm /zt.rpm
+#RUN rpm-ostree install /zt.rpm
 
-RUN rpm-ostree install bootc caddy htop tmux fzf 
-
+#RUN rpm-ostree install bootc caddy htop tmux fzf 
+RUN ostree container commit
 
 RUN useradd -m -d /var/home/rivers -u 1000 -U -G wheel rivers
