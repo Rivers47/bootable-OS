@@ -1,7 +1,7 @@
 # Needs to be set to the Fedora version on CoreOS stable stream, as it is our base image.
 # In a script, you can set this using:
 # BUILDER_VERSION=$(curl -s "https://builds.coreos.fedoraproject.org/streams/stable.json" | jq -r '.architectures.x86_64.artifacts.metal.release' | cut -d '.' -f 1)
-ARG BUILDER_VERSION=41
+ARG BUILDER_VERSION=42
 FROM quay.io/fedora/fedora-coreos:stable as kernel-query
 #We can't use the `uname -r` as it will pick up the host kernel version
 RUN rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}' > /kernel-version.txt
